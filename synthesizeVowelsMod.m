@@ -3,25 +3,25 @@ function vowelWav = synthesizeVowels(vowelID, flag, folder)
     switch vowelID %%% formants - denote the formant frequencies, df1, df2 and df3 denote the allowable range
         %%% of formant frequencies for a particular vowel %%%
         case 1   %%% vowel IY - example beet %%%
-            formants = [270 2290 3010]; df = [60 60 60];
+            formants = [270 2290 3010]; df = [40 40 40];
         case 2   %%% vowel I  - example bit %%%
-            formants = [390 1990 2550]; df = [60 60 60];
+            formants = [390 1990 2550]; df = [40 40 40];
         case 3   %%% vowel E  - example bet %%%
-            formants = [530 1840 2480]; df = [60 60 60];
+            formants = [530 1840 2480]; df = [40 40 40];
         case 4   %%% vowel AE  - example bat %%%
-            formants = [660 1720 2410]; df = [60 60 60];
+            formants = [660 1720 2410]; df = [40 40 40];
         case 5   %%% vowel UH  - example but %%%
-            formants = [520 1190 2390]; df = [60 60 60];
+            formants = [520 1190 2390]; df = [40 40 40];
         case 6   %%% vowel A  - example hot %%%
-            formants = [730 1090 2440]; df = [60 60 60];
+            formants = [730 1090 2440]; df = [40 40 40];
         case 7   %%% vowel OW  - example bought %%%
-            formants = [440 1020 2240]; df = [60 60 60];
+            formants = [440 1020 2240]; df = [40 40 40];
         case 8   %%% vowel U  - example foot %%%
-            formants = [300 870 2240];  df = [60 60 60];
+            formants = [300 870 2240];  df = [40 40 40];
         case 9   %%% vowel OO  - example boot %%%
-            formants = [570 840 2410];  df = [60 60 60];
+            formants = [570 840 2410];  df = [40 40 40];
         case 10  %%% vowel ER  - example bird %%%
-            formants = [490 1350 1690]; df = [60 60 60];
+            formants = [490 1350 1690]; df = [40 40 40];
     end
     R = [0.95 0.97 0.93]; dr=0.015;
     %%%% Designing the source %%%%%
@@ -29,7 +29,7 @@ function vowelWav = synthesizeVowels(vowelID, flag, folder)
     if flag == 1; %%% Synthesize only one instance %%%%
         vowelWav = synthesizeVowelInstance(formants, R);
     else
-        for j = 1 : 20;
+        for j = 1 : 100;
             signVal = ones(1,3);
             randVal = rand(1,3); signVal(randVal < 0.5) = -1; randVal = randVal.*signVal;
             formants = formants + randVal.*(0.5*df) ;

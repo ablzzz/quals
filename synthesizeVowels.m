@@ -29,13 +29,13 @@ function vowelWav = synthesizeVowels(vowelID, flag, folder)
     if flag == 1; %%% Synthesize only one instance %%%%
         vowelWav = synthesizeVowelInstance(formants, R);
     else
-        for j = 1 : 100;
+        for j = 1 : 200;
             signVal = ones(1,3);
             randVal = rand(1,3); signVal(randVal < 0.5) = -1; randVal = randVal.*signVal;
-            formants = formants + randVal.*(0.20*df) ;
+            formants = formants + randVal.*(0.25*df) ;
             %R =  R + randVal.*dr;  
             vowelWav = synthesizeVowelInstance(formants, R);
-            outFile = [folder '/actvowel_' num2str(vowelID) '_instance_' num2str(j) '_f1_' num2str(floor(formants(1))) '_f2_' num2str(floor(formants(2))) ...
+            outFile = [folder '/vowel_' num2str(vowelID) '_instance_' num2str(j) '_f1_' num2str(floor(formants(1))) '_f2_' num2str(floor(formants(2))) ...
                 '_f3_' num2str(floor(formants(3)))]; 
             wavwrite(vowelWav, 16000, outFile);
         end

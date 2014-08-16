@@ -1,0 +1,14 @@
+function centroid = performVQ(folder)
+centroidmagSpec = [];
+for j = 1 : 10;
+    ext = ['actvowel_' num2str(j) '_instance_*wav']
+    files = dir(fullfile(folder(j).name, ext  ));
+    files
+    folder(j).name
+    for k = 1 : 90;
+        feat = load([folder(j).name '/' files(k).name '.magSpec'], '-mat');
+        magSpecFeat(j).feat(k,:) = feat.magSpec(10,1:100);
+    end
+       [idx centr] = kmeans(magSpecFeat(j).feat, 1);
+       centroidmagSpec = [centroidmagSpec; centr]
+end
